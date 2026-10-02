@@ -26,4 +26,7 @@ content_tokens = [
 scores = [zipf_frequency(lemma, "en") for lemma in content_tokens]
 mean_zipf = sum(scores) / len(scores) if scores else 0.0
 
-print (mean_zipf)
+rare_words = [lemma for lemma, score in zip(content_tokens, scores) if score < 3.5]
+rare_word_ratio = len(rare_words) / len(content_tokens) if content_tokens else 0.0
+
+print (rare_word_ratio)
