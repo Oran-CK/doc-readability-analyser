@@ -1,5 +1,8 @@
 from pathlib import Path
 import textstat
+import spacy
+
+nlp = spacy.load("en_core_web_sm")
 
 PACKAGE_DIR = Path(__file__).resolve().parent
 
@@ -11,3 +14,7 @@ def open_file(PACKAGE_DIR, file_path):
 file = open_file(PACKAGE_DIR, "data/sample-data-sherlock.txt")
 
 print (textstat.coleman_liau_index(file))
+
+spacy_thing = nlp(file)
+
+print (spacy_thing)
