@@ -1,6 +1,7 @@
 from pathlib import Path
 import textstat
 import spacy
+from wordfreq import zipf_frequency
 
 nlp = spacy.load("en_core_web_sm")
 
@@ -22,4 +23,7 @@ content_tokens = [
     if not token.is_punct and not token.is_space and not token.is_stop and not token.like_num
 ]
 
-print (content_tokens)
+scores = [zipf_frequency(lemma, "en") for lemma in content_tokens]
+mean_zipf = sum(scores) / len(scores) if scores else 0.0
+
+print (mean_zipf)
