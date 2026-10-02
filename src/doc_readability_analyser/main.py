@@ -15,6 +15,11 @@ file = open_file(PACKAGE_DIR, "data/sample-data-sherlock.txt")
 
 print (textstat.coleman_liau_index(file))
 
-spacy_thing = nlp(file)
+doc = nlp(file)
+content_tokens = [
+    token.lemma_.lower()
+    for token in doc
+    if not token.is_punct and not token.is_space and not token.is_stop and not token.like_num
+]
 
-print (spacy_thing)
+print (content_tokens)
