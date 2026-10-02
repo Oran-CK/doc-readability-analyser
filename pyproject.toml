@@ -7,7 +7,9 @@ authors = [
     { name = "Oran-CK", email = "oran889@gmail.com" }
 ]
 requires-python = ">=3.14"
-dependencies = []
+dependencies = [
+    "textstat>=0.7.13",
+]
 
 [project.scripts]
 doc-readability-analyser = "doc_readability_analyser:main"
