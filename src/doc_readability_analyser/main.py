@@ -1,5 +1,5 @@
 from pathlib import Path
-import textstat
+
 import spacy
 from wordfreq import zipf_frequency
 
@@ -14,7 +14,6 @@ def open_file(PACKAGE_DIR, file_path):
 
 file = open_file(PACKAGE_DIR, "data/sample-data-sherlock.txt")
 
-print (textstat.coleman_liau_index(file))
 
 doc = nlp(file)
 content_tokens = [
