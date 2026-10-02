@@ -1,10 +1,5 @@
 from pathlib import Path
 
-import spacy
-from wordfreq import zipf_frequency
-
-nlp = spacy.load("en_core_web_sm")
-
 PACKAGE_DIR = Path(__file__).resolve().parent
 
 def open_file(PACKAGE_DIR, file_path):
@@ -13,19 +8,3 @@ def open_file(PACKAGE_DIR, file_path):
         return f.read()
 
 file = open_file(PACKAGE_DIR, "data/sample-data-sherlock.txt")
-
-
-doc = nlp(file)
-content_tokens = [
-    token.lemma_.lower()
-    for token in doc
-    if not token.is_punct and not token.is_space and not token.is_stop and not token.like_num
-]
-
-scores = [zipf_frequency(lemma, "en") for lemma in content_tokens]
-mean_zipf = sum(scores) / len(scores) if scores else 0.0
-
-rare_words = [lemma for lemma, score in zip(content_tokens, scores) if score < 3.5]
-rare_word_ratio = len(rare_words) / len(content_tokens) if content_tokens else 0.0
-
-print (rare_word_ratio)
